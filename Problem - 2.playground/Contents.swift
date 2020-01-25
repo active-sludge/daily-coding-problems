@@ -8,7 +8,7 @@
  Follow-up: what if you can't use division?
  */
 
-let originalArray = [1,2,3,4,5]
+let originalArray = [3,2,7,4,5]
 
 var tempArray = originalArray
 var resultArray = originalArray
@@ -21,3 +21,4 @@ for i in 0...originalArray.count-1 {
 }
 
 print(resultArray)
+
