@@ -12,12 +12,16 @@ let inputArray = [1, 8, -1, 9, 21, 13, -7, 2, 3, 4, 4, 5]
 var missingMinPosInt = 0
 
 var minPosInt = inputArray.min { a, b in a < b && a > 0 }!
-var possiblemissingPosInt = minPosInt
+var possibleMissingPosInt = minPosInt
 
-if inputArray.contains(possiblemissingPosInt+1)  {
-    possiblemissingPosInt += 1
-} else {
-    missingMinPosInt = possiblemissingPosInt
+while true {
+    if inputArray.contains(possibleMissingPosInt)  {
+        possibleMissingPosInt += 1
+    } else {
+        missingMinPosInt = possibleMissingPosInt
+        break
+    }
 }
 
 print(missingMinPosInt)
+
