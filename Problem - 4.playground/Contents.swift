@@ -12,7 +12,7 @@ let inputArray = [1, 8, -1, 9, 21, 13, -7, 2, 3, 4, 4, 5]
 var missingMinPosInt = 0
 
 var minPosInt = inputArray.min { a, b in a < b && a > 0 }!
-var possibleMissingPosInt = minPosInt
+var possibleMissingPosInt = minPosInt + 1
 
 while true {
     if inputArray.contains(possibleMissingPosInt)  {
