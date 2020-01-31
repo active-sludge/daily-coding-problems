@@ -13,8 +13,7 @@
  
  */
 
-
-typealias Pair = (a: Int, b:Int)
+typealias Pair = (a: Int, b: Int)
 
 func cons (_ a: Int, _ b: Int) -> Pair {
     return Pair(a,b)
@@ -30,6 +29,4 @@ func cdr (_ pair: Pair) -> Int {
 
 car(cons(1, 2))
 cdr(cons(1, 2))
-
-
 
