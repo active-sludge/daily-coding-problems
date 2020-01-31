@@ -48,7 +48,7 @@ if onlyPosArray == [] {
             }
         }
     } else {
-        missingMinPosInt = 2
+        missingMinPosInt = onlyPosArray[0] + 1
     }
 }
 
