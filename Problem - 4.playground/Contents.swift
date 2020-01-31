@@ -8,27 +8,48 @@
  You can modify the input array in-place.
  */
 
-let inputArray = [1, 8, -1, 9, 21, 13, -7, 3, 4, 4, 5]
-var missingMinPosInt = 0
+let inputArray = [-1,-2,-2,-4,0,7,8,1,2,2,3,3,6,4]
+var missingMinPosInt = 1
+var onlyPosArray = [Int]()
 var possibleMissingPosInt = 0
-var minPosInt = 0
 
-if inputArray.contains(1) != true {
-    possibleMissingPosInt = 1
-} else{
-    let minPosInt = inputArray.min { a, b in a < b && a > 0 }!
-    possibleMissingPosInt = minPosInt
+// Takes only positive elements
+for i in 0...inputArray.count-1 {
+    if inputArray[i] > 0 {
+        onlyPosArray.append(inputArray[i])
+    }
 }
-
-
-while true {
-    if inputArray.contains(possibleMissingPosInt)  {
-        possibleMissingPosInt += 1
+// If there is no possitive element, result is automatically "1"
+if onlyPosArray == [] {
+    missingMinPosInt = 1
+} else {
+    // Orders array from smallest to largest
+    for j in 0...onlyPosArray.count-1 {
+        for k in j...onlyPosArray.count-1 {
+            if onlyPosArray[k] < onlyPosArray[j]  {
+                let tempInt = onlyPosArray[j]
+                onlyPosArray[j] = onlyPosArray[k]
+                onlyPosArray[k] = tempInt
+            }
+        }
+    }
+    // If first element of ordered array is not "1" then it's automatically "1"
+    if onlyPosArray[0] > 1 {
+        missingMinPosInt = 1
+    } else if onlyPosArray.count > 1 {
+        // Compares every neighbour element with eachother if there is a difference more than 1. If there is, then compared element plus 1 is the missing minimum positive integer.
+        for i in 1...onlyPosArray.count-1 {
+            if onlyPosArray[i] - onlyPosArray[i-1] > 1 {
+                missingMinPosInt = onlyPosArray[i-1] + 1
+                break
+            } else if  onlyPosArray[i-1] <= 1 {
+                // If the array consists of bunch of "1s", then the last one plus 1 is the missing minimum positive integer.
+                missingMinPosInt = onlyPosArray[onlyPosArray.count-1] + 1
+            }
+        }
     } else {
-        missingMinPosInt = possibleMissingPosInt
-        break
+        missingMinPosInt = 2
     }
 }
 
 print(missingMinPosInt)
-
